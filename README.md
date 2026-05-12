@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NestAI - Free Open-Source Real Estate Platform
 
-## Getting Started
+NestAI is a modern real estate platform designed for Buyers, Sellers, and Agencies, leveraging AI to simplify listing creation and property discovery.
 
-First, run the development server:
+## 🚀 Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **AI Magic Listing:** Sellers can generate professional property listings from photos and addresses using Ollama (Llava & Llama3).
+- **Buyer Dashboard:** Search for listings and off-market opportunities with instant enquiry tracking.
+- **Agency Management:** View listing statistics and agent performance.
+- **Off-Market Listings:** Support for private listings across residential, commercial, and business sectors.
+- **Real Estate API Integration:** Strict adherence to industry-standard API endpoints.
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 14 (App Router), Tailwind CSS, Shadcn UI
+- **Database:** Supabase (Auth, Profiles, API Cache)
+- **AI:** Ollama (Local/Cloud instance)
+- **Hosting:** Vercel
+
+## ⚙️ Setup
+
+### Environment Variables
+
+Create a `.env.local` file with the following:
+
+```env
+# Real Estate API
+REAL_ESTATE_API_BASE_URL=https://api.example.com
+REAL_ESTATE_API_KEY=your_api_key
+
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# Ollama
+OLLAMA_BASE_URL=http://your-ollama-host:11434
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔒 Security & Compliance
 
-## Learn More
+- **Fair Housing:** AI system prompts are configured to strictly forbid discriminatory language.
+- **Human-in-the-Loop:** All AI-generated content requires manual review and confirmation by the seller before publishing.
+- **API Constraints:** No `POST /v1/projects` endpoint is used (Projects are Read-Only).
 
-To learn more about Next.js, take a look at the following resources:
+## 📄 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open-source under the MIT License.

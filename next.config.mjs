@@ -8,11 +8,9 @@ const nextConfig = {
       },
     ],
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
+  // Allow the server to be accessed from any host for live preview
+  experimental: {
+    serverComponentsExternalPackages: ['ollama'],
   },
 };
 
