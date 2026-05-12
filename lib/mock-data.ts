@@ -1,0 +1,72 @@
+export const MOCK_LISTINGS = [
+  {
+    id: '1',
+    title: 'Modern Waterfront Villa',
+    description: 'Stunning 4-bedroom villa with panoramic ocean views, private infinity pool, and state-of-the-art smart home features.',
+    price: 4500000,
+    address: '123 Ocean Drive, Miami, FL',
+    type: 'residential',
+    status: 'active',
+    beds: 4,
+    baths: 5,
+    sqft: 3200,
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&q=80&w=800',
+    tags: ['Waterfront', 'Infinity Pool', 'Smart Home'],
+    isOffMarket: false,
+  },
+  {
+    id: '2',
+    title: 'Urban Penthouse Loft',
+    description: 'Industrial-chic loft in the heart of downtown, featuring 20ft ceilings, exposed brick, and a private rooftop garden.',
+    price: 1250000,
+    address: '789 Industrial Way, Brooklyn, NY',
+    type: 'residential',
+    status: 'active',
+    beds: 2,
+    baths: 2,
+    sqft: 1800,
+    image: 'https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&q=80&w=800',
+    tags: ['Downtown', 'Rooftop Garden', 'Loft'],
+    isOffMarket: true,
+  },
+  {
+    id: '3',
+    title: 'Serene Mountain Retreat',
+    description: 'Cozy cedar log cabin nestled in the pines, offering ultimate privacy and direct access to hiking trails.',
+    price: 875000,
+    address: '456 Alpine Road, Aspen, CO',
+    type: 'residential',
+    status: 'active',
+    beds: 3,
+    baths: 2,
+    sqft: 2100,
+    image: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=800',
+    tags: ['Mountain View', 'Privacy', 'Hiking'],
+    isOffMarket: false,
+  },
+];
+
+export const MOCK_PROJECTS = [
+  {
+    id: 'p1',
+    name: 'The Emerald Residences',
+    location: 'Soma, San Francisco',
+    description: 'A sustainable luxury development featuring solar-powered units and vertical gardens.',
+    units: 45,
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+  },
+  {
+    id: 'p2',
+    name: 'Skyline Heights',
+    location: 'Downtown Austin, TX',
+    description: 'The tallest residential tower in Austin, offering world-class amenities and 360-degree views.',
+    units: 120,
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=800',
+  },
+];
+
+export const MOCK_STATS = [
+  { label: 'Total Views', value: '12.4k', change: '+14%', trend: 'up' },
+  { label: 'Active Enquiries', value: '48', change: '+5%', trend: 'up' },
+  { label: 'Avg. Response Time', value: '2.4h', change: '-12%', trend: 'down' },
+];
