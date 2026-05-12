@@ -10,6 +10,10 @@ const config: Config = {
   theme: {
 	extend: {
 		colors: {
+			success: {
+				DEFAULT: 'hsl(var(--success))',
+				foreground: 'hsl(var(--success-foreground))'
+			},
 			background: 'hsl(var(--background))',
 			foreground: 'hsl(var(--foreground))',
 			card: {
