@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Upload, Sparkles, Loader2, CheckCircle2, AlertTriangle, X } from 'lucide-react';
+import { Upload, Sparkles, Loader2, CheckCircle2, AlertTriangle, X, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -16,6 +16,25 @@ export const AIWizard = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [description, setDescription] = useState('');
   const [tags] = useState(['Renovated Kitchen', 'Ocean View', 'Smart Home', 'Private Pool']);
+  const [copied, setCopied] = useState(false);
+  const copyTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
+    };
+  }, []);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(description);
+      setCopied(true);
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current);
+      copyTimeoutRef.current = setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
 
   const handleGenerate = () => {
     setIsGenerating(true);
@@ -98,10 +117,31 @@ export const AIWizard = () => {
           {step === 2 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="space-y-2">
-                <Label htmlFor="ai-description" className="flex items-center gap-2">
-                  AI Generated Description
-                  <Badge variant="outline" className="text-[10px] uppercase tracking-wider text-violet-600 border-violet-200 bg-violet-50">Experimental</Badge>
-                </Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="ai-description" className="flex items-center gap-2">
+                    AI Generated Description
+                    <Badge variant="outline" className="text-[10px] uppercase tracking-wider text-violet-600 border-violet-200 bg-violet-50">Experimental</Badge>
+                  </Label>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 px-2 text-slate-500 hover:text-violet-600"
+                    onClick={handleCopy}
+                    aria-live="polite"
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="mr-1 h-3.5 w-3.5" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="mr-1 h-3.5 w-3.5" />
+                        Copy
+                      </>
+                    )}
+                  </Button>
+                </div>
                 <Textarea
                   id="ai-description"
                   value={description}
