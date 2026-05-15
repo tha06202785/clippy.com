@@ -63,6 +63,9 @@ export const Navbar = () => {
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
               className="text-slate-600"
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
@@ -71,7 +74,13 @@ export const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={cn("md:hidden", isOpen ? "block" : "hidden")}>
+      <div
+        id="mobile-menu"
+        className={cn(
+          "md:hidden",
+          isOpen ? "block animate-in fade-in slide-in-from-top-2 duration-200" : "hidden"
+        )}
+      >
         <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3 bg-background border-b">
           {navLinks.map((link) => (
             <Link
