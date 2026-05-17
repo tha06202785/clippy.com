@@ -7,15 +7,26 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Upload, Sparkles, Loader2, CheckCircle2, AlertTriangle, X } from 'lucide-react';
+import { Upload, Sparkles, Loader2, CheckCircle2, AlertTriangle, X, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
 export const AIWizard = () => {
   const [step, setStep] = useState(1);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
   const [description, setDescription] = useState('');
   const [tags] = useState(['Renovated Kitchen', 'Ocean View', 'Smart Home', 'Private Pool']);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(description);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
 
   const handleGenerate = () => {
     setIsGenerating(true);
@@ -98,10 +109,31 @@ export const AIWizard = () => {
           {step === 2 && (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="space-y-2">
-                <Label htmlFor="ai-description" className="flex items-center gap-2">
-                  AI Generated Description
-                  <Badge variant="outline" className="text-[10px] uppercase tracking-wider text-violet-600 border-violet-200 bg-violet-50">Experimental</Badge>
-                </Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="ai-description" className="flex items-center gap-2">
+                    AI Generated Description
+                    <Badge variant="outline" className="text-[10px] uppercase tracking-wider text-violet-600 border-violet-200 bg-violet-50">Experimental</Badge>
+                  </Label>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 px-2 text-slate-500 hover:text-violet-600 focus-visible:ring-violet-600"
+                    onClick={handleCopy}
+                    aria-label="Copy description to clipboard"
+                  >
+                    {isCopied ? (
+                      <span className="flex items-center gap-1 text-xs font-medium text-emerald-600 animate-in fade-in zoom-in duration-300" aria-live="polite">
+                        <Check className="h-3.5 w-3.5" />
+                        Copied!
+                      </span>
+                    ) : (
+                      <span className="flex items-center gap-1 text-xs font-medium">
+                        <Copy className="h-3.5 w-3.5" />
+                        Copy
+                      </span>
+                    )}
+                  </Button>
+                </div>
                 <Textarea
                   id="ai-description"
                   value={description}
